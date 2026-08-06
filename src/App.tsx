@@ -1,13 +1,26 @@
-import { useState } from "react";
-import LockScreen from "./components/LockScreen";
+import { useMediaQuery } from "react-responsive";
+
 import Desktop from "./components/Desktop";
+import Tablet from "./components/Tablet";
+import Mobile from "./components/Mobile";
 
 export default function App() {
-  const [unlocked, setUnlocked] = useState(false);
+  const isDesktop = useMediaQuery({
+    minWidth: 1024,
+  });
 
-  return unlocked ? (
-    <Desktop />
-  ) : (
-    <LockScreen onUnlock={() => setUnlocked(true)} />
-  );
+  const isTablet = useMediaQuery({
+    minWidth: 768,
+    maxWidth: 1023,
+  });
+
+  if (isDesktop) {
+    return <Desktop />;
+  }
+
+  if (isTablet) {
+    return <Tablet />;
+  }
+
+  return <Mobile />;
 }
