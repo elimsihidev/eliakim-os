@@ -62,7 +62,7 @@ export default function Navbar({ page, setPage }: NavbarProps) {
               transition-colors
               duration-300
 
-              2xl:w-[132px]
+              2xl:w-33
               2xl:h-12
               2xl:text-[18px]
             "

@@ -22,6 +22,8 @@ const pages = [
 export default function Desktop() {
   const [page, setPage] = useState(0);
 
+  const Page = pages[page];
+
   return (
     <div
       className="relative min-h-screen overflow-hidden bg-cover bg-center"
@@ -30,13 +32,14 @@ export default function Desktop() {
           "url(https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2200)",
       }}
     >
-      {/* Background */}
+      {/* Outer background */}
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
-      {/* Glass Window */}
+      {/* Main glass window */}
       <div
         className="
           absolute
+          inset-[clamp(1rem,2vw,2rem)]
           overflow-hidden
           rounded-[40px]
           border
@@ -44,11 +47,6 @@ export default function Desktop() {
           shadow-2xl
         "
         style={{
-          top: "clamp(1rem,2vw,2rem)",
-          left: "clamp(1rem,2vw,2rem)",
-          right: "clamp(1rem,2vw,2rem)",
-          bottom: "clamp(1rem,2vw,2rem)",
-
           backgroundImage: `
             linear-gradient(
               90deg,
@@ -70,50 +68,56 @@ export default function Desktop() {
           backdropFilter: "blur(28px)",
         }}
       >
-        {/* Navbar */}
-        <Navbar page={page} setPage={setPage} />
 
-        {/* Floating Apps */}
+        {/* Navbar */}
+        <Navbar
+          page={page}
+          setPage={setPage}
+        />
+
+        {/* Floating Adobe / Blender / DaVinci apps */}
         {page === 0 && <FloatingApps />}
 
-        {/* Pages */}
-        <div
-          className="absolute left-0 right-0 bottom-0 overflow-visible"
-          style={{
-            top: "clamp(5rem,7.5vh,6rem)",
-          }}
+        {/* Current page */}
+        <main
+          className="
+            absolute
+            inset-x-0
+            bottom-0
+            top-18
+            overflow-hidden
+          "
         >
           <motion.div
-            className="flex h-full w-[500%] overflow-hidden"
-            animate={{
-              x: `-${page * 100}%`,
-            }}
+            key={page}
+            className="h-full w-full"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{
-              type: "spring",
-              stiffness: 120,
-              damping: 20,
+              duration: 0.35,
+              ease: "easeOut",
             }}
           >
-            {pages.map((Page, index) => (
-              <div
-                key={index}
-                className="h-full w-full shrink-0"
-              >
-                <Page setPage={setPage} />
-              </div>
-            ))}
+            <Page setPage={setPage} />
           </motion.div>
-        </div>
+        </main>
 
-        {/* Social Links */}
-        <div
-          className="absolute left-1/2 z-50 -translate-x-1/2"
-          style={{
-            bottom: "clamp(0.8rem,2vh,2rem)",
-          }}
-        >
-          <SocialLinks />
-        </div>
+
+        {/* Social links — hidden on Experience */}
+        {page !== 3 && (
+          <div
+            className="
+              absolute
+              bottom-[clamp(0.8rem,2vh,2rem)]
+              left-1/2
+              z-50
+              -translate-x-1/2
+            "
+          >
+            <SocialLinks />
+          </div>
+        )}
+
       </div>
     </div>
   );

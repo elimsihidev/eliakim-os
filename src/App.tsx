@@ -2,7 +2,7 @@ import { useMediaQuery } from "react-responsive";
 
 import Desktop from "./components/Desktop";
 import Tablet from "./components/Tablet";
-import Mobile from "./components/Mobile";
+import Mobile from "./components/mobile/Mobile";
 
 export default function App() {
   const isDesktop = useMediaQuery({

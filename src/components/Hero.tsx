@@ -78,7 +78,7 @@ export default function Hero({ setPage }: HeroProps) {
         }}
       >
         <p
-          className="text-gray-300 2xl:max-w-[760px]"
+          className="text-gray-300 2xl:max-w-190"
           style={{
             maxWidth: "620px",
             fontSize: "clamp(1.15rem,1.4vw,1.45rem)",
