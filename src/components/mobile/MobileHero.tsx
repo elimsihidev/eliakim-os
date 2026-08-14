@@ -115,7 +115,7 @@ export default function MobileHero() {
 
         <motion.img
 
-          src="/images/profile-mobile.png"
+          src="/profile.png"
 
           alt="Portrait"
 

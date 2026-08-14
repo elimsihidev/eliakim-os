@@ -4,7 +4,6 @@ import MobileOverview from "./MobileOverview";
 import MobileProjects from "./MobileProjects";
 import MobileExperience from "./MobileExperience";
 import MobileContact from "./MobileContact";
-import MobileSocials from "./MobileSocials";
 
 export default function Mobile() {
   return (
@@ -65,27 +64,27 @@ export default function Mobile() {
           scroll-smooth
           "
         >
-          <section id="home">
+          <section>
             <MobileHero />
           </section>
 
-          <section id="overview">
+          <section>
             <MobileOverview />
           </section>
 
-          <section id="projects">
+          <section>
             <MobileProjects />
           </section>
 
-          <section id="experience">
+          <section>
             <MobileExperience />
           </section>
 
-          <section id="contact">
+          <section>
             <MobileContact />
           </section>
 
-          <MobileSocials />
+
         </div>
       </div>
     </div>

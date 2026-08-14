@@ -1,143 +1,80 @@
 import { motion } from "framer-motion";
-
-const projects = [
-  {
-    title: "Serengeti Bytes",
-    category: "Social Media",
-    type: "Campaign Design",
-    image: "/projects/serengeti.jpg",
-    color: "#F97316",
-    link: "#",
-  },
-  {
-    title: "Expensive Store",
-    category: "Fashion",
-    type: "Brand Campaign",
-    image: "/projects/expensive.jpg",
-    color: "#444",
-    link: "#",
-  },
-  {
-    title: "Fountain Gate FC",
-    category: "Sports",
-    type: "Creative Direction",
-    image: "/projects/fountaingate.jpg",
-    color: "#00C8FF",
-    link: "#",
-  },
-  {
-    title: "CRDB Bank",
-    category: "Photography",
-    type: "Behind the Scenes",
-    image: "/projects/crdb.jpg",
-    color: "#00B140",
-    link: "#",
-  },
-  {
-    title: "Jackpot City Casino",
-    category: "Photography",
-    type: "Behind the Scenes",
-    image: "/projects/jackpot.jpg",
-    color: "#8B5CF6",
-    link: "#",
-  },
-];
+import { ArrowUpRight } from "lucide-react";
+import { projects } from "../../data/portfolio";
 
 export default function MobileProjects() {
   return (
-    <section className="px-6 py-20">
+    <section className="px-6 py-20" id="projects">
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mb-4 text-sm font-bold uppercase tracking-[0.25em] text-cyan-400"
+      >
+        Selected work
+      </motion.p>
 
       <motion.h2
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-4xl font-black leading-tight mb-3"
+        className="mb-3 text-4xl font-black leading-tight text-white"
       >
-        Selected <span className="text-cyan-400">Projects</span>
+        Projects that <span className="text-cyan-400">move.</span>
       </motion.h2>
 
-      <p className="text-neutral-400 mb-10 leading-7">
-        Strategy, motion, design and storytelling brought together into
-        campaigns that people actually remember.
+      <p className="mb-10 leading-7 text-neutral-400">
+        Strategy, motion, design, and storytelling brought together into campaigns people remember.
       </p>
 
-      <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-5 no-scrollbar">
-
+      <div className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-5">
         {projects.map((project, index) => (
-
-          <motion.a
-            href={project.link}
-            key={index}
-            whileTap={{ scale: .97 }}
-            className="snap-center min-w-[88vw] rounded-4xl overflow-hidden bg-neutral-900 border border-white/5"
+          <motion.article
+            key={project.title}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: index * 0.08 }}
+            viewport={{ once: true }}
+            className="group relative min-w-[88vw] snap-center overflow-hidden rounded-[40px] border border-white/10 bg-neutral-950"
           >
-
-            <div className="relative h-105">
-
+            {project.image ? (
               <img
                 src={project.image}
-                className="absolute inset-0 w-full h-full object-cover"
+                alt={`${project.title} project preview`}
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-
+            ) : (
               <div
+                aria-hidden="true"
                 className="absolute inset-0"
                 style={{
-                  background:
-                    "linear-gradient(to top, rgba(0,0,0,.95), rgba(0,0,0,.15), transparent)",
+                  background: `radial-gradient(circle at 75% 18%, ${project.color}88, transparent 34%), linear-gradient(145deg, #111 0%, #050505 65%, ${project.color}33 100%)`,
                 }}
-              />
-
-              <div
-                className="absolute inset-0"
-                style={{
-                  boxShadow: `inset 0 0 120px ${project.color}20`,
-                }}
-              />
-
-              <div className="absolute bottom-8 left-8 right-8">
-
-                <p
-                  className="uppercase text-sm font-semibold mb-2 tracking-widest"
-                  style={{ color: project.color }}
-                >
-                  {project.category}
-                </p>
-
-                <h3 className="text-3xl font-bold mb-2">
-                  {project.title}
-                </h3>
-
-                <p className="text-neutral-300">
-                  {project.type}
-                </p>
-
-                <div className="mt-8 flex justify-between items-center">
-
-                  <span className="text-neutral-400">
-                    Tap anywhere to explore
-                  </span>
-
-                  <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center text-black text-2xl font-bold"
-                    style={{
-                      background: project.color,
-                    }}
-                  >
-                    ↗
-                  </div>
-
+              >
+                <div className="absolute -right-4 -top-10 text-[15rem] font-black leading-none text-white/[0.05]">
+                  {project.title.charAt(0)}
                 </div>
-
               </div>
+            )}
 
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+            <div className="relative flex min-h-[420px] flex-col justify-end p-8">
+              <p className="mb-2 text-sm font-semibold uppercase tracking-widest" style={{ color: project.color }}>
+                {project.category}
+              </p>
+              <h3 className="mb-2 text-3xl font-bold text-white">{project.title}</h3>
+              <p className="text-neutral-300">{project.type}</p>
+              <p className="mt-4 max-w-sm text-sm leading-6 text-neutral-400">{project.description}</p>
+              <div className="mt-7 flex items-center gap-3 text-sm font-semibold text-white">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full text-black" style={{ background: project.color }}>
+                  <ArrowUpRight size={21} />
+                </span>
+                <span>{project.link ? "View project" : "Case study coming soon"}</span>
+              </div>
             </div>
-
-          </motion.a>
-
+          </motion.article>
         ))}
-
       </div>
-
     </section>
   );
 }

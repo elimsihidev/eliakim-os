@@ -1,143 +1,173 @@
 import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, Calendar, ArrowRight } from "lucide-react";
+import MobileSocials from "./MobileSocials";
 
-const projects = [
-  {
-    title: "Serengeti Bytes",
-    category: "Social Media",
-    type: "Campaign Design",
-    image: "/projects/serengeti.jpg",
-    color: "#F97316",
-    link: "#",
-  },
-  {
-    title: "Expensive Store",
-    category: "Fashion",
-    type: "Brand Campaign",
-    image: "/projects/expensive.jpg",
-    color: "#444",
-    link: "#",
-  },
-  {
-    title: "Fountain Gate FC",
-    category: "Sports",
-    type: "Creative Direction",
-    image: "/projects/fountaingate.jpg",
-    color: "#00C8FF",
-    link: "#",
-  },
-  {
-    title: "CRDB Bank",
-    category: "Photography",
-    type: "Behind the Scenes",
-    image: "/projects/crdb.jpg",
-    color: "#00B140",
-    link: "#",
-  },
-  {
-    title: "Jackpot City Casino",
-    category: "Photography",
-    type: "Behind the Scenes",
-    image: "/projects/jackpot.jpg",
-    color: "#8B5CF6",
-    link: "#",
-  },
-];
+const scheduleHref =
+  "mailto:elimsihi@gmail.com?subject=Schedule%20a%20creative%20consultation&body=Hi%20Eliakim%2C%0A%0AI%27d%20like%20to%20schedule%20a%20creative%20consultation.%20My%20preferred%20date%20and%20time%20are%3A%0A%0A";
 
-export default function MobileProjects() {
+export default function MobileContact() {
   return (
-    <section className="px-6 py-20">
-
-      <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-4xl font-black leading-tight mb-3"
-      >
-        Selected <span className="text-cyan-400">Projects</span>
-      </motion.h2>
-
-      <p className="text-neutral-400 mb-10 leading-7">
-        Strategy, motion, design and storytelling brought together into
-        campaigns that people actually remember.
-      </p>
-
-      <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-5 no-scrollbar">
-
-        {projects.map((project, index) => (
-
-          <motion.a
-            href={project.link}
-            key={index}
-            whileTap={{ scale: .97 }}
-            className="snap-center min-w-[88vw] rounded-4xl overflow-hidden bg-neutral-900 border border-white/5"
+    <section id="contact" className="px-6 py-24 bg-[#050505]">
+      <div className="max-w-2xl mx-auto space-y-12">
+        
+        {/* Intro */}
+        <div className="text-center mb-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-5xl font-black text-white mb-6"
           >
+            LET'S <span className="text-cyan-400">TALK!</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            viewport={{ once: true }}
+            className="text-neutral-400 text-lg leading-relaxed"
+          >
+            Have a project in mind or just want to say hi? 
+            I'm always open to new opportunities and collaborations.
+          </motion.p>
+        </div>
 
-            <div className="relative h-105">
-
-              <img
-                src={project.image}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(0,0,0,.95), rgba(0,0,0,.15), transparent)",
-                }}
-              />
-
-              <div
-                className="absolute inset-0"
-                style={{
-                  boxShadow: `inset 0 0 120px ${project.color}20`,
-                }}
-              />
-
-              <div className="absolute bottom-8 left-8 right-8">
-
-                <p
-                  className="uppercase text-sm font-semibold mb-2 tracking-widest"
-                  style={{ color: project.color }}
-                >
-                  {project.category}
-                </p>
-
-                <h3 className="text-3xl font-bold mb-2">
-                  {project.title}
-                </h3>
-
-                <p className="text-neutral-300">
-                  {project.type}
-                </p>
-
-                <div className="mt-8 flex justify-between items-center">
-
-                  <span className="text-neutral-400">
-                    Tap anywhere to explore
-                  </span>
-
-                  <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center text-black text-2xl font-bold"
-                    style={{
-                      background: project.color,
-                    }}
-                  >
-                    ↗
-                  </div>
-
-                </div>
-
+        {/* Info Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-white/5 border border-white/10 rounded-[40px] p-8 backdrop-blur-xl"
+        >
+          <div className="space-y-4">
+            <div className="flex items-center gap-5 p-4 bg-white/5 border border-white/5 rounded-2xl">
+              <div className="w-10 h-10 rounded-xl bg-cyan-400/10 flex items-center justify-center text-cyan-400">
+                <Mail size={20} />
               </div>
-
+              <div>
+                <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Email</p>
+                <p className="text-base text-white font-medium">elimsihi@gmail.com</p>
+              </div>
             </div>
 
-          </motion.a>
+            <div className="flex items-center gap-5 p-4 bg-white/5 border border-white/5 rounded-2xl">
+              <div className="w-10 h-10 rounded-xl bg-cyan-400/10 flex items-center justify-center text-cyan-400">
+                <Phone size={20} />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Phone</p>
+                <p className="text-base text-white font-medium">+255 739 923 733</p>
+              </div>
+            </div>
 
-        ))}
+            <div className="flex items-center gap-5 p-4 bg-white/5 border border-white/5 rounded-2xl">
+              <div className="w-10 h-10 rounded-xl bg-cyan-400/10 flex items-center justify-center text-cyan-400">
+                <MapPin size={20} />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Location</p>
+                <p className="text-base text-white font-medium">Dar es Salaam, Tanzania</p>
+              </div>
+            </div>
 
+            <a href={scheduleHref} className="w-full flex items-center gap-5 p-4 bg-white/5 border border-white/5 rounded-2xl text-left mt-4 transition-colors hover:border-cyan-400/35 hover:bg-white/[0.07]">
+              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white">
+                <Calendar size={20} />
+              </div>
+              <div>
+                <p className="text-base text-white font-bold">Schedule a Meeting</p>
+                <p className="text-xs text-neutral-500">Request a creative consultation by email</p>
+              </div>
+              <ArrowRight size={18} className="ml-auto text-neutral-500" />
+            </a>
+          </div>
+        </motion.div>
+
+        {/* Form Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          viewport={{ once: true }}
+          className="bg-white/5 border border-white/10 rounded-[40px] p-8 backdrop-blur-xl"
+        >
+          <h3 className="text-2xl font-black text-white mb-8">Send a Message</h3>
+          
+          <form action="https://formspree.io/f/xpparwgo" method="POST" className="space-y-5">
+            <div className="space-y-2">
+              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Full Name *</label>
+              <input 
+                type="text" 
+                name="name"
+                required
+                placeholder="Your full name"
+                className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-neutral-600 focus:outline-none focus:border-cyan-400/50 transition-colors"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Email Address *</label>
+              <input 
+                type="email" 
+                name="email"
+                required
+                placeholder="your.email@example.com"
+                className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-neutral-600 focus:outline-none focus:border-cyan-400/50 transition-colors"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Company</label>
+              <input 
+                type="text" 
+                name="company"
+                placeholder="Your company name"
+                className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-neutral-600 focus:outline-none focus:border-cyan-400/50 transition-colors"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Subject *</label>
+              <input 
+                type="text" 
+                name="subject"
+                required
+                placeholder="What's this about?"
+                className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-neutral-600 focus:outline-none focus:border-cyan-400/50 transition-colors"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Message *</label>
+              <textarea 
+                name="message"
+                required
+                rows={4}
+                placeholder="Tell me about your project..."
+                className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-neutral-600 focus:outline-none focus:border-cyan-400/50 transition-colors resize-none"
+              />
+            </div>
+
+            <button 
+              type="submit"
+              className="w-full py-5 bg-cyan-400 text-black rounded-xl font-black text-lg flex items-center justify-center gap-3 active:scale-95 transition-all"
+            >
+              Send Message
+              <ArrowRight size={20} />
+            </button>
+          </form>
+        </motion.div>
+
+        <div className="text-center pt-8">
+          <p className="text-neutral-500 uppercase tracking-[0.2em] text-[10px] font-bold mb-6">
+            Find me on
+          </p>
+          <MobileSocials />
+          <p className="mt-16 text-neutral-600 text-xs font-medium">
+            © {new Date().getFullYear()} Eliakim Msihi. Built with passion.
+          </p>
+        </div>
       </div>
-
     </section>
   );
 }

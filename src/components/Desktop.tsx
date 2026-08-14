@@ -37,15 +37,7 @@ export default function Desktop() {
 
       {/* Main glass window */}
       <div
-        className="
-          absolute
-          inset-[clamp(1rem,2vw,2rem)]
-          overflow-hidden
-          rounded-[40px]
-          border
-          border-white/10
-          shadow-2xl
-        "
+        className="absolute inset-[clamp(1rem,2vw,2rem)] overflow-hidden rounded-[40px] border border-white/10 shadow-2xl"
         style={{
           backgroundImage: `
             linear-gradient(
@@ -79,15 +71,7 @@ export default function Desktop() {
         {page === 0 && <FloatingApps />}
 
         {/* Current page */}
-        <main
-          className="
-            absolute
-            inset-x-0
-            bottom-0
-            top-18
-            overflow-hidden
-          "
-        >
+        <main className="absolute inset-x-0 bottom-0 top-18 overflow-hidden">
           <motion.div
             key={page}
             className="h-full w-full"
@@ -103,17 +87,9 @@ export default function Desktop() {
         </main>
 
 
-        {/* Social links — hidden on Experience */}
-        {page !== 3 && (
-          <div
-            className="
-              absolute
-              bottom-[clamp(0.8rem,2vh,2rem)]
-              left-1/2
-              z-50
-              -translate-x-1/2
-            "
-          >
+        {/* Social links — hidden on Overview, Projects, Experience */}
+        {page !== 1 && page !== 2 && page !== 3 && (
+          <div className="absolute bottom-[clamp(0.8rem,2vh,2rem)] left-1/2 z-50 -translate-x-1/2">
             <SocialLinks />
           </div>
         )}
