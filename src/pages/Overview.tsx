@@ -5,7 +5,6 @@ import {
   GraduationCap,
   Briefcase,
   ArrowUpRight,
-  Footprints,
   Timer,
   Mountain,
 } from "lucide-react";
