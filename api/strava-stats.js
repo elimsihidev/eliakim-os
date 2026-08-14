@@ -1,5 +1,6 @@
 // Vercel serverless function: /api/strava-stats
-// Keeps your Strava credentials safely on the server.
+// Keeps Strava credentials safely on the server.
+// Credentials are read from Vercel Environment Variables.
 
 export default async function handler(req, res) {
   try {
@@ -13,10 +14,7 @@ export default async function handler(req, res) {
       });
     }
 
-    // --------------------------------------------------
-    // 1. Get a fresh Strava access token
-    // --------------------------------------------------
-
+    // 1. Refresh the Strava access token
     const tokenResponse = await fetch(
       "https://www.strava.com/oauth/token",
       {
@@ -45,10 +43,7 @@ export default async function handler(req, res) {
     const tokenData = await tokenResponse.json();
     const accessToken = tokenData.access_token;
 
-    // --------------------------------------------------
-    // 2. Get athlete information
-    // --------------------------------------------------
-
+    // 2. Get the athlete
     const athleteResponse = await fetch(
       "https://www.strava.com/api/v3/athlete",
       {
@@ -69,10 +64,7 @@ export default async function handler(req, res) {
 
     const athlete = await athleteResponse.json();
 
-    // --------------------------------------------------
     // 3. Get athlete statistics
-    // --------------------------------------------------
-
     const statsResponse = await fetch(
       `https://www.strava.com/api/v3/athletes/${athlete.id}/stats`,
       {
@@ -94,62 +86,89 @@ export default async function handler(req, res) {
     const stats = await statsResponse.json();
 
     // --------------------------------------------------
-    // 4. Recent running statistics
+    // RUNNING STATS
     // --------------------------------------------------
 
     const recentRuns = stats.recent_run_totals || {};
 
-    const distanceMeters = recentRuns.distance || 0;
-    const movingTimeSeconds = recentRuns.moving_time || 0;
-    const elevationGainMeters = recentRuns.elevation_gain || 0;
     const runCount = recentRuns.count || 0;
 
-    // Convert meters to kilometers
+    const runDistanceMeters = recentRuns.distance || 0;
+
     const runDistanceKm =
-      Math.round((distanceMeters / 1000) * 10) / 10;
+      Math.round((runDistanceMeters / 1000) * 10) / 10;
 
-    // --------------------------------------------------
-    // 5. Calculate average pace
-    // --------------------------------------------------
+    // Moving time is returned by Strava in seconds
+    const movingTimeSeconds = recentRuns.moving_time || 0;
 
-    let paceSecondsPerKm = 0;
+    // Convert total time into hours + minutes
+    const totalTimeHours = Math.floor(
+      movingTimeSeconds / 3600
+    );
 
-    if (distanceMeters > 0) {
-      paceSecondsPerKm =
-        movingTimeSeconds / (distanceMeters / 1000);
+    const totalTimeMinutes = Math.floor(
+      (movingTimeSeconds % 3600) / 60
+    );
+
+    // Average pace
+    // seconds per kilometer
+    let avgPace = "0:00";
+
+    if (runDistanceMeters > 0 && movingTimeSeconds > 0) {
+      const secondsPerKm =
+        movingTimeSeconds / (runDistanceMeters / 1000);
+
+      const paceMinutes = Math.floor(secondsPerKm / 60);
+
+      const paceSeconds = Math.round(secondsPerKm % 60);
+
+      avgPace = `${paceMinutes}:${String(paceSeconds).padStart(
+        2,
+        "0"
+      )}`;
     }
 
-    // Round pace to nearest second
-    paceSecondsPerKm = Math.round(paceSecondsPerKm);
+    // Elevation gain
+    const totalElevation = Math.round(
+      recentRuns.elevation_gain || 0
+    );
 
     // --------------------------------------------------
-    // 6. Return simplified data for the website
+    // ALL-TIME STATS
+    // --------------------------------------------------
+
+    const allRunTotals = stats.all_run_totals || {};
+
+    const allTimeRunDistanceKm =
+      Math.round(
+        ((allRunTotals.distance || 0) / 1000) * 10
+      ) / 10;
+
+    // --------------------------------------------------
+    // FINAL RESPONSE
     // --------------------------------------------------
 
     const payload = {
+      athlete: {
+        id: athlete.id,
+        firstname: athlete.firstname || "",
+        lastname: athlete.lastname || "",
+      },
+
       recent: {
-        runCount: runCount,
+        runCount,
+        runDistanceKm,
 
-        runDistanceKm: runDistanceKm,
+        totalTimeHours,
+        totalTimeMinutes,
 
-        movingTimeSeconds: movingTimeSeconds,
+        avgPace,
 
-        elevationGainMeters: Math.round(elevationGainMeters),
-
-        paceSecondsPerKm: paceSecondsPerKm,
+        totalElevation,
       },
 
       allTime: {
-        runDistanceKm:
-          Math.round(
-            ((stats.all_run_totals?.distance || 0) / 1000) * 10
-          ) / 10,
-
-        movingTimeSeconds:
-          stats.all_run_totals?.moving_time || 0,
-
-        elevationGainMeters:
-          Math.round(stats.all_run_totals?.elevation_gain || 0),
+        runDistanceKm: allTimeRunDistanceKm,
       },
     };
 
