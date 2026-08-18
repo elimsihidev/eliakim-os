@@ -29,7 +29,7 @@ export const projects = [
       "Brand and social media creative work developed for Expensive Store.",
     color: "#3b82f6",
     image: "/projects/expensive-store.jpg",
-    link: "",
+    link: "https://www.behance.net/gallery/254372169/Expensive-Stores",
   },
 
   {

@@ -1,7 +1,17 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'HelloSeoul';
+  src: url('/fonts/HelloSeoul.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
-  * {
+  *,
+  *::before,
+  *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -14,8 +24,133 @@
   }
 
   body {
-    font-family: Inter, sans-serif;
-    background: #020617;
+    font-family: "Inter", system-ui, sans-serif;
+    background: #050505;
     overflow: hidden;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  ::selection {
+    color: #050505;
+    background: #22d3ee;
+  }
+}
+
+@layer components {
+  .responsive-shell {
+    font-family: "Inter", system-ui, sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .responsive-shell .eyebrow {
+    font-size: 0.68rem;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #22d3ee;
+  }
+
+  .responsive-shell .display-title,
+  .responsive-shell h1,
+  .responsive-shell h2,
+  .responsive-shell h3,
+  .responsive-shell h4,
+  .responsive-shell h5,
+  .responsive-shell h6 {
+    font-family: "Inter", system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  .responsive-shell .display-title {
+    letter-spacing: -0.065em;
+    line-height: 0.92;
+  }
+
+  .responsive-shell .section-copy {
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: rgb(255 255 255 / 0.62);
+  }
+
+  .responsive-shell .quiet-border {
+    border-color: rgb(255 255 255 / 0.1);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-title {
+    font-size: clamp(3.25rem, 6vw, 4rem) !important;
+  }
+
+  .tablet-experience-grid {
+    width: calc(100% - 64px) !important;
+    height: calc(100% - 150px) !important;
+    min-height: 0 !important;
+    gap: 1rem !important;
+  }
+
+  .tablet-experience-card {
+    min-height: 0 !important;
+    border-radius: 1.25rem;
+  }
+
+  .tablet-experience-company {
+    top: 1.25rem !important;
+    padding-inline: 0.75rem !important;
+  }
+
+  .tablet-experience-company p {
+    font-size: 0.7rem !important;
+    letter-spacing: 0.12em;
+  }
+
+  .tablet-experience-body {
+    gap: 0.55rem !important;
+    padding-inline: 0.8rem !important;
+    padding-top: 1.5rem;
+    padding-bottom: 1.2rem;
+  }
+
+  .tablet-experience-role {
+    max-width: 100% !important;
+    font-size: clamp(1.05rem, 2.1vw, 1.35rem) !important;
+    line-height: 1.08 !important;
+  }
+
+  .tablet-experience-description {
+    max-width: 100% !important;
+    font-size: 0.68rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .tablet-experience-period {
+    bottom: 1rem !important;
+    padding-inline: 0.5rem;
+  }
+
+  .tablet-experience-period p {
+    font-size: 0.62rem !important;
+    line-height: 1.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -5,22 +5,10 @@ import Tablet from "./components/Tablet";
 import Mobile from "./components/mobile/Mobile";
 
 export default function App() {
-  const isDesktop = useMediaQuery({
-    minWidth: 1024,
-  });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1199 });
+  const isDesktop = useMediaQuery({ minWidth: 1200 });
 
-  const isTablet = useMediaQuery({
-    minWidth: 768,
-    maxWidth: 1023,
-  });
-
-  if (isDesktop) {
-    return <Desktop />;
-  }
-
-  if (isTablet) {
-    return <Tablet />;
-  }
-
+  if (isDesktop) return <Desktop />;
+  if (isTablet) return <Tablet />;
   return <Mobile />;
 }

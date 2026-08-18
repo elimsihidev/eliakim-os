@@ -1,90 +1,35 @@
 import { motion } from "framer-motion";
-import {
-  FaLinkedinIn,
-  FaInstagram,
-  FaBehance,
-  FaTiktok,
-} from "react-icons/fa";
+import { FaBehance, FaInstagram, FaLinkedinIn, FaTiktok } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 const socials = [
-  {
-    icon: <FaLinkedinIn />,
-    href: "https://linkedin.com/in/elimsihi",
-    label: "LinkedIn",
-  },
-  {
-    icon: <FaInstagram />,
-    href: "https://instagram.com/elimsihi",
-    label: "Instagram",
-  },
-  {
-    icon: <FaBehance />,
-    href: "https://behance.net/elimsihi",
-    label: "Behance",
-  },
-  {
-    icon: <FaTiktok />,
-    href: "https://tiktok.com/@elitalked",
-    label: "TikTok",
-  },
-  {
-    icon: <MdEmail />,
-    href: "mailto:elimsihi@gmail.com",
-    label: "Email",
-  },
+  { icon: <FaLinkedinIn />, href: "https://linkedin.com/in/elimsihi", label: "LinkedIn" },
+  { icon: <FaInstagram />, href: "https://instagram.com/elimsihi", label: "Instagram" },
+  { icon: <FaBehance />, href: "https://behance.net/elimsihi", label: "Behance" },
+  { icon: <FaTiktok />, href: "https://tiktok.com/@elitalked", label: "TikTok" },
+  { icon: <MdEmail />, href: "mailto:elimsihi@gmail.com", label: "Email" },
 ];
 
 export default function MobileSocials() {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 25 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.8 }}
-      className="
-        mt-20
-        mb-10
-        flex
-        justify-center
-        items-center
-        gap-4
-      "
+      initial={false}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="mt-6 flex flex-wrap gap-x-5 gap-y-3"
     >
       {socials.map((social) => (
-        <motion.a
+        <a
           key={social.label}
           href={social.href}
-          target="_blank"
-          rel="noopener noreferrer"
+          target={social.href.startsWith("mailto:") ? undefined : "_blank"}
+          rel={social.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+          className="inline-flex items-center gap-2 text-xs text-white/48 transition-colors hover:text-cyan-300"
           title={social.label}
-          whileHover={{
-            y: -8,
-            scale: 1.08,
-          }}
-          whileTap={{
-            scale: 0.92,
-          }}
-          className="
-            flex
-            h-12
-            w-12
-            items-center
-            justify-center
-            rounded-full
-            border
-            border-white/10
-            bg-white/10
-            backdrop-blur-2xl
-            text-white
-            text-lg
-            transition-all
-            duration-300
-            hover:border-cyan-400/50
-            hover:bg-cyan-400/15
-          "
         >
-          {social.icon}
-        </motion.a>
+          <span className="text-sm">{social.icon}</span>
+          <span>{social.label}</span>
+        </a>
       ))}
     </motion.div>
   );

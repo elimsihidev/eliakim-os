@@ -5,7 +5,7 @@ import {
   FaBehance,
   FaTiktok,
 } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+import { FaXTwitter } from "react-icons/fa6";
 
 const socials = [
   {
@@ -25,13 +25,13 @@ const socials = [
   },
   {
     icon: <FaTiktok />,
-    href: "https://tiktok.com/@elitalked",
+    href: "https://tiktok.com/@elimsihi",
     label: "TikTok",
   },
   {
-    icon: <MdEmail />,
-    href: "mailto:elimsihi@gmail.com",
-    label: "Email",
+    icon: <FaXTwitter />,
+    href: "https://x.com/elimsihi",
+    label: "X",
   },
 ];
 

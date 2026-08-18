@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 
 import ae from "../assets/icons/after-effects.svg";
-import blender from "../assets/icons/blender.svg";
+import figma from "../assets/icons/figma.svg";
 import davinci from "../assets/icons/davinci.svg";
 import illustrator from "../assets/icons/illustrator.svg";
 import photoshop from "../assets/icons/photoshop.svg";
 
 const apps = [
   { icon: ae, name: "After Effects" },
-  { icon: blender, name: "Blender" },
+  { icon: figma, name: "Figma" },
   { icon: davinci, name: "DaVinci Resolve" },
   { icon: illustrator, name: "Illustrator" },
   { icon: photoshop, name: "Photoshop" },

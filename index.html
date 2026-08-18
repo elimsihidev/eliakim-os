@@ -9,47 +9,105 @@
   <link rel="apple-touch-icon" href="/Eli.png" />
 
   <!-- Responsive -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#08090a" />
+  <meta name="color-scheme" content="dark" />
 
   <!-- SEO -->
-  <title>Eliakim Msihi | Content Creator & Motion Graphics Designer</title>
-
+  <title>Eliakim Msihi — Creative Multimedia Specialist</title>
   <meta
     name="description"
-    content="Portfolio of Eliakim Msihi — Content Creator, Graphic Designer, Motion Graphics Designer, Social Media Specialist, and Brand Storyteller."
+    content="Eliakim Msihi is a Dar es Salaam-based Creative Multimedia Specialist creating visual identities, motion graphics, content and campaigns for brands."
   />
-
   <meta
     name="keywords"
-    content="Eliakim Msihi, Content Creator, Motion Graphics Designer, Graphic Designer, Social Media Specialist, Brand Storyteller, Portfolio, Tanzania"
+    content="Eliakim Msihi, Creative Multimedia Specialist, Graphic Designer Tanzania, Motion Graphics Designer, Content Creator Dar es Salaam, Brand Storytelling, Social Media Specialist"
   />
-
   <meta name="author" content="Eliakim Msihi" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://elimsihi.vercel.app/" />
 
-  <!-- Theme Color -->
-  <meta name="theme-color" content="#0a0a0a" />
+  <!-- Hello Seoul is preloaded for the animated logo; Inter is used throughout the interface -->
+  <link rel="preload" href="/fonts/HelloSeoul.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+  </noscript>
 
   <!-- Open Graph (Facebook / LinkedIn) -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Eliakim Msihi | Portfolio" />
+  <meta property="og:site_name" content="Eliakim Msihi" />
+  <meta property="og:locale" content="en_TZ" />
+  <meta property="og:title" content="Eliakim Msihi — Creative Multimedia Specialist" />
   <meta
     property="og:description"
-    content="Creative portfolio showcasing motion graphics, graphic design, content creation and brand storytelling."
+    content="Explore Eliakim Msihi's portfolio of visual identities, motion graphics, content and digital storytelling."
   />
-  <meta property="og:image" content="/profile.jpg" />
-  <meta property="og:url" content="https://eliakim-os.vercel.app/" />
+  <meta property="og:url" content="https://elimsihi.vercel.app/" />
+  <meta property="og:image" content="https://elimsihi.vercel.app/images/profile-mobile.png" />
+  <meta property="og:image:alt" content="Eliakim Msihi — Creative Multimedia Specialist" />
+  <meta property="og:image:type" content="image/png" />
 
-  <!-- Twitter -->
+  <!-- Social sharing -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Eliakim Msihi | Portfolio" />
+  <meta name="twitter:title" content="Eliakim Msihi — Creative Multimedia Specialist" />
   <meta
     name="twitter:description"
-    content="Creative portfolio showcasing motion graphics, graphic design, content creation and brand storytelling."
+    content="Visual identities, motion graphics, content and digital storytelling by Eliakim Msihi."
   />
-  <meta name="twitter:image" content="/profile.jpg" />
+  <meta name="twitter:image" content="https://elimsihi.vercel.app/images/profile-mobile.png" />
+  <meta name="twitter:image:alt" content="Eliakim Msihi — Creative Multimedia Specialist" />
 
-  <!-- Metricool Analytics -->
-  <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"a42c407f0038812c6e9766fbef435549"})});</script>
+  <!-- Portfolio structured data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Eliakim Msihi",
+      "url": "https://elimsihi.vercel.app/",
+      "jobTitle": "Creative Multimedia Specialist",
+      "description": "Dar es Salaam-based Creative Multimedia Specialist creating visual identities, motion graphics, content and campaigns for brands.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Dar es Salaam",
+        "addressCountry": "TZ"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/elimsihi",
+        "https://www.instagram.com/elimsihi",
+        "https://www.behance.net/elimsihi",
+        "https://www.tiktok.com/@elitalked",
+        "https://x.com/elimsihi"
+      ]
+    }
+  </script>
+
+  <!-- Metricool Analytics: deferred until the browser is idle -->
+  <script>
+    window.addEventListener("load", function () {
+      var start = function () {
+        var script = document.createElement("script");
+        script.async = true;
+        script.src = "https://tracker.metricool.com/resources/be.js";
+        script.onload = function () {
+          if (window.beTracker) window.beTracker.t({ hash: "a42c407f0038812c6e9766fbef435549" });
+        };
+        document.head.appendChild(script);
+      };
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(start, { timeout: 2000 });
+      } else {
+        window.setTimeout(start, 1200);
+      }
+    }, { once: true });
+  </script>
 </head>
 
 <body>

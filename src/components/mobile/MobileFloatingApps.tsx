@@ -96,19 +96,22 @@ export default function MobileFloatingApps({
               flex
               items-center
               justify-center
-              h-12
-              w-12
+              h-11
+              w-11
               rounded-full
               border
-              border-white/10
-              bg-white/10
-              backdrop-blur-2xl
-              shadow-xl
+              border-white/5
+              bg-white/5
+              backdrop-blur-md
             "
           >
             <img
               src={app.icon}
               alt={app.name}
+              width={28}
+              height={28}
+              loading="lazy"
+              decoding="async"
               className="h-7 w-7"
             />
           </div>

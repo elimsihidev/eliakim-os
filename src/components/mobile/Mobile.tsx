@@ -1,91 +1,74 @@
-import MobileNavbar from "./MobileNavbar";
+import { useEffect } from "react";
 import MobileHero from "./MobileHero";
+import MobileNavbar from "./MobileNavbar";
 import MobileOverview from "./MobileOverview";
 import MobileProjects from "./MobileProjects";
 import MobileExperience from "./MobileExperience";
 import MobileContact from "./MobileContact";
 
+function scrollToHashTarget(hash = window.location.hash) {
+  const id = hash.slice(1);
+  if (!id) return;
+
+  const container = document.querySelector<HTMLElement>("main[data-mobile-scroll]");
+  const target = document.getElementById(id);
+  if (!container || !target) return;
+
+  const top =
+    target.getBoundingClientRect().top -
+    container.getBoundingClientRect().top +
+    container.scrollTop -
+    88;
+
+  container.scrollTo({ top: Math.max(0, top), behavior: "instant" });
+}
+
 export default function Mobile() {
+  useEffect(() => {
+    const initialHash = window.location.hash;
+    if (initialHash) {
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+
+    const frame = requestAnimationFrame(() => scrollToHashTarget(initialHash));
+    const retry = window.setTimeout(() => scrollToHashTarget(initialHash), 350);
+    const finalRetry = window.setTimeout(() => scrollToHashTarget(initialHash), 900);
+    const handleHashChange = () => scrollToHashTarget();
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.clearTimeout(retry);
+      window.clearTimeout(finalRetry);
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
   return (
     <div
-      className="
-      relative
-      min-h-screen
-      bg-cover
-      bg-center
-      "
+      className="responsive-shell relative h-[100dvh] w-full overflow-hidden bg-[#08090a] text-white"
       style={{
-        backgroundImage:
-          "url(https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200)",
+        backgroundImage: "url('/images/profile-mobile.png')",
+        backgroundPosition: "center top",
+        backgroundSize: "cover",
       }}
     >
-      {/* Background */}
+      <div className="absolute inset-0 bg-[#08090a]/82" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#08090a]/65 via-[#08090a]/90 to-[#08090a]" />
 
-      <div
-        className="
-        absolute
-        inset-0
-        bg-black/60
-        backdrop-blur-sm
-        "
-      />
-
-      {/* Glass Window */}
-
-      <div
-        className="
-        absolute
-        inset-3
-        rounded-[35px]
-        border
-        border-white/10
-        shadow-2xl
-        overflow-hidden
-        "
-        style={{
-          backgroundImage: `
-            linear-gradient(
-              180deg,
-              rgba(10,10,10,.92) 0%,
-              rgba(10,10,10,.82) 100%
-            )
-          `,
-          backdropFilter: "blur(28px)",
-        }}
-      >
+      <div className="relative h-full overflow-hidden">
         <MobileNavbar />
 
-        <div
-          className="
-          absolute
-          inset-0
-          pt-16
-          overflow-y-auto
-          scroll-smooth
-          "
+        <main
+          data-mobile-scroll
+          className="absolute inset-0 z-0 overflow-y-auto overscroll-contain scroll-smooth pb-0 [-webkit-overflow-scrolling:touch] no-scrollbar"
         >
-          <section>
-            <MobileHero />
-          </section>
-
-          <section>
-            <MobileOverview />
-          </section>
-
-          <section>
-            <MobileProjects />
-          </section>
-
-          <section>
-            <MobileExperience />
-          </section>
-
-          <section>
-            <MobileContact />
-          </section>
-
-
-        </div>
+          <MobileHero />
+          <MobileOverview />
+          <MobileProjects />
+          <MobileExperience />
+          <MobileContact />
+        </main>
       </div>
     </div>
   );

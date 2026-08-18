@@ -1,379 +1,100 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 
-import MobileTypingRoles from "./MobileTypingRoles";
-import MobileFloatingApps from "./MobileFloatingApps";
+const roles = [
+  "Graphic Designer",
+  "Content Creator",
+  "Brand Storyteller",
+  "Motion Graphics Designer",
+  "Social Media Specialist",
+];
 
 export default function MobileHero() {
+  const [index, setIndex] = useState(0);
 
-  const heroRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIndex((prev) => (prev + 1) % roles.length);
+    }, 4000);
 
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end end"],
-  });
-
-  /*
-  ----------------------------------------
-  HERO EXIT
-  ----------------------------------------
-  */
-
-  const imageY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [0, -300]
-  );
-
-  const roleY = useTransform(
-    scrollYProgress,
-    [0, .28],
-    [0, -240]
-  );
-
-  const roleOpacity = useTransform(
-    scrollYProgress,
-    [0, .18],
-    [1, 0]
-  );
-
-  const headingY = useTransform(
-    scrollYProgress,
-    [0, .32],
-    [0, -280]
-  );
-
-  const headingOpacity = useTransform(
-    scrollYProgress,
-    [0, .22],
-    [1, 0]
-  );
-
-  /*
-  ----------------------------------------
-  HERO ENTER
-  ----------------------------------------
-  */
-
-  const ctaY = useTransform(
-    scrollYProgress,
-    [.25, .42],
-    [140, 0]
-  );
-
-  const ctaOpacity = useTransform(
-    scrollYProgress,
-    [.25, .42],
-    [0, 1]
-  );
-
-  const descY = useTransform(
-    scrollYProgress,
-    [.40, .58],
-    [120, 0]
-  );
-
-  const descOpacity = useTransform(
-    scrollYProgress,
-    [.40, .58],
-    [0, 1]
-  );
-
-  const appsY = useTransform(
-    scrollYProgress,
-    [.55, .75],
-    [120, 0]
-  );
-
-  const appsOpacity = useTransform(
-    scrollYProgress,
-    [.55, .75],
-    [0, 1]
-  );
+    return () => clearTimeout(timer);
+  }, [index]);
 
   return (
+    <section id="home" className="relative flex min-h-[100svh] flex-col items-center justify-start overflow-hidden bg-[#08090a] px-6 text-white sm:px-8">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/profile-mobile.png"
+          alt="Portrait of Eliakim Msihi, Creative Multimedia Specialist"
+          width={1200}
+          height={1600}
+          fetchPriority="high"
+          decoding="async"
+          className="h-full w-full object-cover opacity-70 grayscale"
+          style={{ objectPosition: '50% 60%' }}
+        />
+        {/* Dark vignette/gradient overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#08090a]/90 via-[#08090a]/40 to-[#08090a]" />
+      </div>
+      
+      <div className="relative z-10 mt-40 flex w-full flex-col items-center text-center sm:mt-48">
+        {/* User's Custom Typing Roles Animation */}
+        <div className="mb-4 h-6 w-full overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={roles[index]}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.3 }}
+              className="flex items-center justify-center w-full"
+            >
+              <span className="text-[14px] font-semibold text-white whitespace-nowrap text-center uppercase tracking-[0.1em]">
+                {roles[index]}
+              </span>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
-    <section
-      id="home"
-      ref={heroRef}
-      className="
-      relative
-      h-[220vh]
-      "
-    >
+        {/* Main Title - Line 1 */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.7 }}
+          className="display-title text-[2.8rem] font-black leading-[1.1] tracking-[-0.04em] sm:text-[4.5rem]"
+        >
+          <span className="text-white">Content </span>
+          <span className="text-cyan-400">Plug</span>
+        </motion.h1>
 
-      <div
-        className="
-        sticky
-        top-0
-        h-screen
-        overflow-hidden
-        "
+        {/* Main Title - Line 2 */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.7 }}
+          className="display-title text-[2.8rem] font-black leading-[1.1] tracking-[-0.04em] text-white sm:text-[4.5rem]"
+        >
+          for Brands & Stories
+        </motion.h1>
+
+
+      </div>
+
+      {/* Explore Work Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-16 left-1/2 -translate-x-1/2"
       >
-
-        {/* Portrait */}
-
-        <motion.img
-
-          src="/profile.png"
-
-          alt="Portrait"
-
-          style={{
-            y: imageY,
-          }}
-
-          className="
-          absolute
-          inset-0
-          h-full
-          w-full
-          object-cover
-          object-[58%_42%]
-          scale-105
-          grayscale
-          "
-        />
-
-        {/* Overlays */}
-
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to top,rgba(0,0,0,.98),rgba(0,0,0,.55),rgba(0,0,0,.08))",
-          }}
-        />
-
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to right,rgba(0,0,0,.45),transparent)",
-          }}
-        />
-
-        {/* Role */}
-
-        <motion.div
-
-          style={{
-            y: roleY,
-            opacity: roleOpacity,
-          }}
-
-          className="
-          absolute
-          top-20
-          left-1/2
-          -translate-x-1/2
-          z-20
-          "
-
+        <a 
+          href="#projects"
+          className="text-[16px] font-bold tracking-[0.05em] text-cyan-400 hover:text-cyan-300 transition-colors"
         >
-
-          <div
-            className="
-            flex
-            items-center
-            justify-center
-            w-[235px]
-            h-10
-            rounded-full
-            border
-            border-white/10
-            bg-[#2d2d2d]/90
-            backdrop-blur-xl
-            shadow-lg
-            "
-          >
-
-            <MobileTypingRoles />
-
-          </div>
-
-        </motion.div>
-
-        {/* Heading */}
-
-        <motion.div
-
-          style={{
-            y: headingY,
-            opacity: headingOpacity,
-          }}
-
-          className="
-          absolute
-          top-40
-          left-0
-          w-full
-          px-8
-          z-20
-          "
-
-        >
-
-          <h1
-            className="
-            text-center
-            font-black
-            leading-[0.9]
-            tracking-[-0.045em]
-            "
-          >
-
-            <span
-              className="
-              block
-              text-cyan-400
-              text-[2.55rem]
-              "
-            >
-              Content Plug
-            </span>
-
-            <span
-              className="
-              block
-              mt-1
-              text-white
-              text-[2.25rem]
-              "
-            >
-              for Brands & Stories.
-            </span>
-
-          </h1>
-
-        </motion.div>
-                {/* Explore Button */}
-
-                <motion.div
-
-style={{
-  y: ctaY,
-  opacity: ctaOpacity,
-}}
-
-className="
-absolute
-left-0
-top-[62%]
-w-full
-flex
-justify-center
-z-20
-"
-
->
-
-<button
-
-  onClick={() => {
-    document
-      .getElementById("overview")
-      ?.scrollIntoView({
-        behavior: "smooth",
-      });
-  }}
-
-  className="
-  rounded-full
-  border
-  border-cyan-400/20
-  bg-cyan-400/15
-  backdrop-blur-xl
-  px-8
-  py-3
-  text-cyan-300
-  font-semibold
-  transition-all
-  duration-300
-  hover:bg-cyan-400/25
-  "
-
->
-
-  Explore My Story →
-
-</button>
-
-</motion.div>
-
-{/* Description */}
-
-<motion.div
-
-style={{
-  y: descY,
-  opacity: descOpacity,
-}}
-
-className="
-absolute
-left-0
-top-[74%]
-w-full
-px-8
-z-20
-"
-
->
-
-<p
-  className="
-  mx-auto
-  max-w-[305px]
-  text-center
-  text-gray-300
-  text-[1rem]
-  leading-8
-  "
->
-
-  Helping brands communicate through
-  content, design, motion and digital
-  strategy.
-
-</p>
-
-</motion.div>
-
-{/* Floating Apps */}
-
-<motion.div
-
-style={{
-  y: appsY,
-  opacity: appsOpacity,
-}}
-
-className="
-absolute
-left-0
-bottom-10
-w-full
-flex
-justify-center
-z-20
-"
-
->
-
-<MobileFloatingApps horizontal />
-
-</motion.div>
-
-</div>
-
-{/* Scroll Spacer */}
-
-<div
-className="
-h-screen
-"
-/>    </section>
-
-);
+          Explore My Work
+        </a>
+      </motion.div>
+    </section>
+  );
 }

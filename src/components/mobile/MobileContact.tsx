@@ -1,170 +1,151 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Calendar, ArrowRight } from "lucide-react";
-import MobileSocials from "./MobileSocials";
-
-const scheduleHref =
-  "mailto:elimsihi@gmail.com?subject=Schedule%20a%20creative%20consultation&body=Hi%20Eliakim%2C%0A%0AI%27d%20like%20to%20schedule%20a%20creative%20consultation.%20My%20preferred%20date%20and%20time%20are%3A%0A%0A";
+import { Calendar, Send, ArrowUpRight } from "lucide-react";
 
 export default function MobileContact() {
   return (
-    <section id="contact" className="px-6 py-24 bg-[#050505]">
-      <div className="max-w-2xl mx-auto space-y-12">
-        
-        {/* Intro */}
-        <div className="text-center mb-12">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-5xl font-black text-white mb-6"
-          >
-            LET'S <span className="text-cyan-400">TALK!</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            viewport={{ once: true }}
-            className="text-neutral-400 text-lg leading-relaxed"
-          >
-            Have a project in mind or just want to say hi? 
-            I'm always open to new opportunities and collaborations.
-          </motion.p>
+    <section id="contact" className="scroll-mt-5 bg-[#08090a] px-6 py-16 text-white sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-3xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          {/* Title */}
+          <h2 className="display-title text-center text-[2.8rem] tracking-[-0.02em] sm:text-[3.6rem]">
+            Let's <span className="text-cyan-400">Talk</span>
+          </h2>
+          
+          {/* Subtitle */}
+          <p className="mt-8 max-w-md mx-auto text-center text-[0.95rem] leading-relaxed text-white/40">
+            Have a project, opportunity or idea in mind? Tell me what you are building and I'll get back to you.
+          </p>
+        </motion.div>
+
+        {/* Contact Info Grid */}
+        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
+            <p className="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-white/20">Email</p>
+            <p className="mt-2 font-medium text-white/80">elimsihi@gmail.com</p>
+          </div>
+          <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
+            <p className="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-white/20">Phone</p>
+            <p className="mt-2 font-medium text-white/80">+255 739 923 733</p>
+          </div>
         </div>
 
-        {/* Info Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-white/5 border border-white/10 rounded-[40px] p-8 backdrop-blur-xl"
-        >
-          <div className="space-y-4">
-            <div className="flex items-center gap-5 p-4 bg-white/5 border border-white/5 rounded-2xl">
-              <div className="w-10 h-10 rounded-xl bg-cyan-400/10 flex items-center justify-center text-cyan-400">
-                <Mail size={20} />
-              </div>
-              <div>
-                <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Email</p>
-                <p className="text-base text-white font-medium">elimsihi@gmail.com</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-5 p-4 bg-white/5 border border-white/5 rounded-2xl">
-              <div className="w-10 h-10 rounded-xl bg-cyan-400/10 flex items-center justify-center text-cyan-400">
-                <Phone size={20} />
-              </div>
-              <div>
-                <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Phone</p>
-                <p className="text-base text-white font-medium">+255 739 923 733</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-5 p-4 bg-white/5 border border-white/5 rounded-2xl">
-              <div className="w-10 h-10 rounded-xl bg-cyan-400/10 flex items-center justify-center text-cyan-400">
-                <MapPin size={20} />
-              </div>
-              <div>
-                <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Location</p>
-                <p className="text-base text-white font-medium">Dar es Salaam, Tanzania</p>
-              </div>
-            </div>
-
-            <a href={scheduleHref} className="w-full flex items-center gap-5 p-4 bg-white/5 border border-white/5 rounded-2xl text-left mt-4 transition-colors hover:border-cyan-400/35 hover:bg-white/[0.07]">
-              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white">
-                <Calendar size={20} />
-              </div>
-              <div>
-                <p className="text-base text-white font-bold">Schedule a Meeting</p>
-                <p className="text-xs text-neutral-500">Request a creative consultation by email</p>
-              </div>
-              <ArrowRight size={18} className="ml-auto text-neutral-500" />
-            </a>
+        {/* Quick Action */}
+        <div className="mt-4 flex items-center justify-between rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.02] p-6">
+          <div>
+            <p className="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-cyan-400/60">Quick Action</p>
+            <p className="mt-2 font-bold text-white">Schedule a meeting</p>
           </div>
-        </motion.div>
+          <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 text-cyan-400">
+            <Calendar size={20} strokeWidth={1.5} />
+          </div>
+        </div>
 
-        {/* Form Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          viewport={{ once: true }}
-          className="bg-white/5 border border-white/10 rounded-[40px] p-8 backdrop-blur-xl"
-        >
-          <h3 className="text-2xl font-black text-white mb-8">Send a Message</h3>
-          
-          <form action="https://formspree.io/f/xpparwgo" method="POST" className="space-y-5">
-            <div className="space-y-2">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Full Name *</label>
-              <input 
-                type="text" 
-                name="name"
-                required
-                placeholder="Your full name"
-                className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-neutral-600 focus:outline-none focus:border-cyan-400/50 transition-colors"
-              />
+        {/* Message Form Card */}
+        <div className="mt-10 rounded-[2rem] border border-white/5 bg-[#0c0d0e] p-8">
+          <div className="flex items-start justify-between">
+            <div>
+              <h3 className="text-xl font-bold text-white">Send a message</h3>
+              <p className="mt-1 text-sm text-white/30">I usually reply within a few working days.</p>
+            </div>
+            <Send size={20} className="text-cyan-400/60" strokeWidth={1.5} />
+          </div>
+
+          <form action="https://formspree.io/f/xvgzlowq" method="POST" className="mt-10 space-y-6">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div>
+                <label className="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-white/20">Full Name *</label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Your full name"
+                  className="mt-2 w-full rounded-xl border border-white/5 bg-white/[0.02] px-5 py-4 text-sm text-white placeholder:text-white/10 focus:border-cyan-400/50 focus:outline-none"
+                />
+              </div>
+              <div>
+                <label className="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-white/20">Email *</label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="you@example.com"
+                  className="mt-2 w-full rounded-xl border border-white/5 bg-white/[0.02] px-5 py-4 text-sm text-white placeholder:text-white/10 focus:border-cyan-400/50 focus:outline-none"
+                />
+              </div>
             </div>
 
-            <div className="space-y-2">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Email Address *</label>
-              <input 
-                type="email" 
-                name="email"
-                required
-                placeholder="your.email@example.com"
-                className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-neutral-600 focus:outline-none focus:border-cyan-400/50 transition-colors"
-              />
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div>
+                <label className="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-white/20">Company</label>
+                <input
+                  type="text"
+                  name="company"
+                  placeholder="Your company"
+                  className="mt-2 w-full rounded-xl border border-white/5 bg-white/[0.02] px-5 py-4 text-sm text-white placeholder:text-white/10 focus:border-cyan-400/50 focus:outline-none"
+                />
+              </div>
+              <div>
+                <label className="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-white/20">Subject *</label>
+                <input
+                  type="text"
+                  name="subject"
+                  required
+                  placeholder="What can I help with?"
+                  className="mt-2 w-full rounded-xl border border-white/5 bg-white/[0.02] px-5 py-4 text-sm text-white placeholder:text-white/10 focus:border-cyan-400/50 focus:outline-none"
+                />
+              </div>
             </div>
 
-            <div className="space-y-2">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Company</label>
-              <input 
-                type="text" 
-                name="company"
-                placeholder="Your company name"
-                className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-neutral-600 focus:outline-none focus:border-cyan-400/50 transition-colors"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Subject *</label>
-              <input 
-                type="text" 
-                name="subject"
-                required
-                placeholder="What's this about?"
-                className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-neutral-600 focus:outline-none focus:border-cyan-400/50 transition-colors"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Message *</label>
-              <textarea 
+            <div>
+              <label className="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-white/20">Message *</label>
+              <textarea
                 name="message"
                 required
-                rows={4}
-                placeholder="Tell me about your project..."
-                className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-neutral-600 focus:outline-none focus:border-cyan-400/50 transition-colors resize-none"
+                rows={5}
+                placeholder="Tell me a little about the project..."
+                className="mt-2 w-full resize-none rounded-xl border border-white/5 bg-white/[0.02] px-5 py-4 text-sm text-white placeholder:text-white/10 focus:border-cyan-400/50 focus:outline-none"
               />
             </div>
 
-            <button 
+            <button
               type="submit"
-              className="w-full py-5 bg-cyan-400 text-black rounded-xl font-black text-lg flex items-center justify-center gap-3 active:scale-95 transition-all"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-cyan-400 py-4 text-sm font-bold text-[#08090a] transition-transform hover:scale-[1.01] active:scale-[0.99]"
             >
-              Send Message
-              <ArrowRight size={20} />
+              Send message <ArrowUpRight size={18} strokeWidth={2.5} />
             </button>
           </form>
-        </motion.div>
+        </div>
 
-        <div className="text-center pt-8">
-          <p className="text-neutral-500 uppercase tracking-[0.2em] text-[10px] font-bold mb-6">
-            Find me on
-          </p>
-          <MobileSocials />
-          <p className="mt-16 text-neutral-600 text-xs font-medium">
-            © {new Date().getFullYear()} Eliakim Msihi. Built with passion.
+        {/* Footer */}
+        <div className="mt-24 border-t border-white/5 pt-12 pb-6 text-center">
+          <p className="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-white/20">Find me online</p>
+          
+          <div className="mt-8 flex flex-row flex-wrap justify-center gap-x-6 gap-y-4 px-4 sm:gap-x-8">
+            {[
+              { label: "LinkedIn", href: "https://linkedin.com/in/elimsihi" },
+              { label: "Instagram", href: "https://instagram.com/elimsihi" },
+              { label: "Behance", href: "https://behance.net/elimsihi" },
+              { label: "TikTok", href: "https://tiktok.com/@elitalked" },
+              { label: "X", href: "https://x.com/elimsihi" },
+            ].map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[0.75rem] font-bold text-white/40 transition-colors hover:text-cyan-400 sm:text-[0.8rem]"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          <p className="mt-12 text-[0.65rem] font-medium tracking-[0.05em] text-white/20">
+            © 2026 Eliakim Msihi
           </p>
         </div>
       </div>
