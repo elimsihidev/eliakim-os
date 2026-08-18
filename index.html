@@ -89,25 +89,8 @@
     }
   </script>
 
-  <!-- Metricool Analytics: deferred until the browser is idle -->
-  <script>
-    window.addEventListener("load", function () {
-      var start = function () {
-        var script = document.createElement("script");
-        script.async = true;
-        script.src = "https://tracker.metricool.com/resources/be.js";
-        script.onload = function () {
-          if (window.beTracker) window.beTracker.t({ hash: "a42c407f0038812c6e9766fbef435549" });
-        };
-        document.head.appendChild(script);
-      };
-      if ("requestIdleCallback" in window) {
-        window.requestIdleCallback(start, { timeout: 2000 });
-      } else {
-        window.setTimeout(start, 1200);
-      }
-    }, { once: true });
-  </script>
+  <!-- Metricool Analytics -->
+  <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"a42c407f0038812c6e9766fbef435549"})});</script>
 </head>
 
 <body>
